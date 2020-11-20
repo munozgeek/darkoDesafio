@@ -1,0 +1,110 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}USUARIOS{% endblock %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('AdminLTE/plugins/toastr/toastr.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>USUARIOS</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INICIO</a></li>
+                        <li class="breadcrumb-item active">LISTADO</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">LISTADO DE USUARIOS</h3>
+                        <div class="card-tools">
+                            <ul class="pagination pagination-sm float-right">
+                                <li class="page-item">
+                                    <a class="page-link" href="{{ path('index_new') }}"><i class="fas fa-plus"></i></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>NOMBRE</th>
+                                    <th>CORREO</th>
+                                    <th style="width: 40px">ACCIÓN</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            {% for user in users %}
+                                <tr>
+                                    <td>{{ loop.index }}</td>
+                                    <td>{{ user.displayName }}</td>
+                                    <td>{{ user.email }}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="{{ path('index_edit',{'idRegister': user.uid}) }}" class="btn btn-primary btn-flat"><i class="fas fa-edit"></i></a>
+                                            <a href="{{ path('index_delete',{'idRegister': user.uid}) }}" class="btn btn-danger btn-flat"><i class="fas fa-trash"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+{% block javascripts %}
+    <script src="{{ asset('AdminLTE/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('AdminLTE/plugins/toastr/toastr.min.js') }}"></script>
+
+    <script type="text/javascript">
+        {% for flash_message in app.session.flashbag.get('new') %}
+            $(function() {
+                $(document).Toasts('create', {
+                    class: 'bg-success',
+                    title: 'Nuevo registro.',
+                    body: '{{ flash_message }}'
+                });
+            });
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('edit') %}
+            $(function() {
+                $(document).Toasts('create', {
+                    class: 'bg-success',
+                    title: 'Registro editado',
+                    body: '{{ flash_message }}'
+                });
+            });
+        {% endfor %}
+        {% for flash_message in app.session.flashbag.get('delete') %}
+            $(function() {
+                $(document).Toasts('create', {
+                    class: 'bg-success',
+                    title: 'Registro eliminado',
+                    body: '{{ flash_message }}'
+                });
+            });
+        {% endfor %}
+    </script>
+
+{% endblock %}

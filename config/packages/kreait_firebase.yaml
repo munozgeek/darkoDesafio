@@ -1,0 +1,14 @@
+# app/config/config.yml (Symfony without Flex)
+# config/packages/firebase.yaml (Symfony with Flex)
+kreait_firebase:
+    projects:
+        darkoDesafio:
+            credentials: '%kernel.project_dir%/config/desafiodarko-4f25fd6a8859.json'
+            default: true
+            public: true
+            database_uri: 'https://desafiodarko.firebaseio.com'
+            verifier_cache: null # Example: cache.app
+            # If set, logs simple HTTP request and response statuses
+            http_request_logger: null # Example: monolog.logger.firebase
+            # If set, logs detailed HTTP request and response statuses
+            http_request_debug_logger: null # Example: monolog.logger.firebase_debug

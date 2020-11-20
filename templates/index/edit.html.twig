@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% form_theme form 'bootstrap_4_horizontal_layout.html.twig' %}
+{% block title %}USUARIOS{% endblock %}
+
+{% block body %}
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>USUARIOS</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">INICIO</a></li>
+                        <li class="breadcrumb-item active">NUEVO</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+    <section class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 class="card-title">NUEVO USUARIO</h3>
+                            <div class="card-tools">
+                                <ul class="pagination pagination-sm float-right">
+                                    <li class="page-item">
+                                        <a class="page-link" href="{{ path('index') }}">VOLVER AL LISTADO</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body p-0">
+                            {{ form_start(form) }}
+                            <div class="col-md-12 mt-3">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        {{ form_row(form.displayName,{'attr': {'value':user.displayName}}) }}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{ form_row(form.phoneNumber,{'attr': {'value':user.phoneNumber}}) }}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{ form_row(form.email,{'attr': {'value':user.email}}) }}
+                                    </div>
+                                    <div class="col-md-12">
+                                        {{ form_row(form.password) }}
+                                    </div>
+                                    <div class="col-md-6"></div>
+                                    <div class="col-md-6 text-right">
+                                        {{ form_widget(form.clear) }}
+                                        {{ form_widget(form.save) }}
+                                    </div>
+                                    {{ form_widget(form) }}
+                                </div>
+                                {{ form_end(form) }}
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript">
+        $('#form_phoneNumber').inputmask("+99999999999")
+    </script>
+{% endblock %}

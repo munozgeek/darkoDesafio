@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="2c4a6052-80cb-4518-aa70-cc7759353732" name="LOCAL" url="http://192.168.0.50">
+        <fileTransfer rootFolder="/home/mzgk/www/darko" accessType="SFTP" host="192.168.0.50" port="22" sshConfigId="5be334d0-8342-4a6a-ad87-526d3e31409c" sshConfig="mzgk@192.168.0.50:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
